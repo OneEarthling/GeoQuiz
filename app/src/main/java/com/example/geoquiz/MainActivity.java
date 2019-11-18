@@ -74,6 +74,8 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 mCurrentIndex = (mCurrentIndex + 1) % mQuestionBank.length;
                 updateQuestion();
+                mTrueButton.setEnabled(true);
+                mFalseButton.setEnabled(true);
             }
         });
 
@@ -84,6 +86,8 @@ public class MainActivity extends AppCompatActivity {
                 if (mCurrentIndex != 0) {
                     mCurrentIndex = (mCurrentIndex - 1) % mQuestionBank.length;
                     updateQuestion();
+                    mTrueButton.setEnabled(true);
+                    mFalseButton.setEnabled(true);
                 }
             }
         });
@@ -102,8 +106,10 @@ public class MainActivity extends AppCompatActivity {
         } else {
             messageResId = R.string.incorrect_toast;
         }
-
         Toast.makeText(this, messageResId, Toast.LENGTH_SHORT).show();
+
+        mTrueButton.setEnabled(false);
+        mFalseButton.setEnabled(false);
     }
 
     @Override
