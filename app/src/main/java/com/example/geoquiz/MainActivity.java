@@ -11,6 +11,8 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.util.Locale;
+
 public class MainActivity extends AppCompatActivity {
     private static final String TAG = "MainActivity";
     private static final String KEY_INDEX = "index";
@@ -29,7 +31,7 @@ public class MainActivity extends AppCompatActivity {
             new Question(R.string.question_asia, true)
     };
     private int mCurrentIndex = 0;
-
+    private int mCorrectAnswers = 0;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -72,10 +74,18 @@ public class MainActivity extends AppCompatActivity {
         mNextQuestion.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                mCurrentIndex = (mCurrentIndex + 1) % mQuestionBank.length;
-                updateQuestion();
-                mTrueButton.setEnabled(true);
-                mFalseButton.setEnabled(true);
+                if (mCurrentIndex != mQuestionBank.length-1) {
+                    mCurrentIndex = (mCurrentIndex + 1) % mQuestionBank.length;
+                    updateQuestion();
+                    mTrueButton.setEnabled(true);
+                    mFalseButton.setEnabled(true);
+                }
+                else{
+                    double res = (double) mCorrectAnswers/(double)mQuestionBank.length*100;
+                    String str = String.format(Locale.getDefault(),"Количество правильных ответов: %.2f", res);
+                    mQuestionTextView.setText(str);
+                }
+
             }
         });
 
@@ -94,6 +104,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void updateQuestion() {
+        //Log.d(TAG, "Updating question text", new Exception());
         int question = mQuestionBank[mCurrentIndex].getTextResId();
         mQuestionTextView.setText(question);
     }
@@ -103,6 +114,7 @@ public class MainActivity extends AppCompatActivity {
         int messageResId = 0;
         if (userPressedTrue == answerisTrue) {
             messageResId = R.string.correct_toast;
+            mCorrectAnswers++;
         } else {
             messageResId = R.string.incorrect_toast;
         }
