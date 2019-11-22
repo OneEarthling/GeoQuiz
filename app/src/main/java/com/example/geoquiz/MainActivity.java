@@ -90,8 +90,11 @@ public class MainActivity extends AppCompatActivity {
                     double res = (double) mCorrectAnswers/(double)mQuestionBank.length*100;
                     String str = String.format(Locale.getDefault(),"Количество правильных ответов: %.0f %%", res);
                     mQuestionTextView.setText(str);
+                    mTrueButton.setEnabled(false);
+                    mFalseButton.setEnabled(false);
+                    mCheatButton.setEnabled(false);
+                    mNextQuestion.setEnabled(false);
                 }
-
             }
         });
 
