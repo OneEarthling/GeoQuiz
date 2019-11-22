@@ -17,6 +17,7 @@ import java.util.Locale;
 public class MainActivity extends AppCompatActivity {
     private static final String TAG = "MainActivity";
     private static final String KEY_INDEX = "index";
+    private static final String KEY_IS_CHEATER = "is_cheater";
     private static final int REQUEST_CODE_CHEAT = 0;
     private Button mTrueButton;
     private Button mFalseButton;
@@ -44,6 +45,7 @@ public class MainActivity extends AppCompatActivity {
 
         if (savedInstanceState != null){
             mCurrentIndex = savedInstanceState.getInt(KEY_INDEX, 0);
+            mIsCheater = savedInstanceState.getBoolean(KEY_IS_CHEATER, false);
         }
 
         mQuestionTextView = findViewById(R.id.question_text_view);
@@ -87,7 +89,7 @@ public class MainActivity extends AppCompatActivity {
                 }
                 else{
                     double res = (double) mCorrectAnswers/(double)mQuestionBank.length*100;
-                    String str = String.format(Locale.getDefault(),"Количество правильных ответов: %.2f", res);
+                    String str = String.format(Locale.getDefault(),"Количество правильных ответов: %.0f %%", res);
                     mQuestionTextView.setText(str);
                 }
 
@@ -150,11 +152,12 @@ public class MainActivity extends AppCompatActivity {
             } else {
                 messageResId = R.string.incorrect_toast;
             }
-            Toast.makeText(this, messageResId, Toast.LENGTH_SHORT).show();
 
             mTrueButton.setEnabled(false);
             mFalseButton.setEnabled(false);
         }
+
+        Toast.makeText(this, messageResId, Toast.LENGTH_SHORT).show();
     }
 
     @Override
@@ -180,6 +183,7 @@ public class MainActivity extends AppCompatActivity {
         super.onSaveInstanceState(savedInstanceState);
         Log.i(TAG, "onSaveInstanceState");
         savedInstanceState.putInt(KEY_INDEX, mCurrentIndex);
+        savedInstanceState.putBoolean(KEY_IS_CHEATER, mIsCheater);
     }
 
     @Override
