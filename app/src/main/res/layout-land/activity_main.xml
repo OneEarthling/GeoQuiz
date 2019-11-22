@@ -33,14 +33,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|center_horizontal"
         android:text="@string/cheat_button" />
-    <Button
-        android:id="@+id/prev_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/prev_button"
-        android:drawableLeft = "@drawable/arrow_left"
-        android:layout_gravity="bottom|start">
-    </Button>
+
     <Button
         android:id="@+id/next_buttton"
         android:layout_width="wrap_content"

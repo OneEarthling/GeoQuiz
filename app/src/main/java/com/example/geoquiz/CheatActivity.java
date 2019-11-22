@@ -35,7 +35,8 @@ public class CheatActivity extends AppCompatActivity {
         setContentView(R.layout.activity_cheat);
 
         if (savedInstanceState != null){
-            setAnswerShownResult(savedInstanceState.getBoolean(WAS_ANSWER_SHOWN, false));
+            mWasAnswerShown = savedInstanceState.getBoolean(WAS_ANSWER_SHOWN, false);
+            setAnswerShownResult(mWasAnswerShown);
         }
 
         mAnswerIsTrue = getIntent().getBooleanExtra(EXTRA_ANSWER_IS_TRUE, false);

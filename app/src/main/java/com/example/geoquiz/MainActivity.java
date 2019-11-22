@@ -22,7 +22,6 @@ public class MainActivity extends AppCompatActivity {
     private Button mTrueButton;
     private Button mFalseButton;
     private Button mNextQuestion;
-    private Button mPrevQuestion;
     private Button mCheatButton;
     private TextView mQuestionTextView;
     private boolean mIsCheater;
@@ -93,19 +92,6 @@ public class MainActivity extends AppCompatActivity {
                     mQuestionTextView.setText(str);
                 }
 
-            }
-        });
-
-        mPrevQuestion = findViewById(R.id.prev_button);
-        mPrevQuestion.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (mCurrentIndex != 0) {
-                    mCurrentIndex = (mCurrentIndex - 1) % mQuestionBank.length;
-                    updateQuestion();
-                    mTrueButton.setEnabled(true);
-                    mFalseButton.setEnabled(true);
-                }
             }
         });
 
