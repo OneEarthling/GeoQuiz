@@ -1,8 +1,9 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
     android:gravity="center"
-    android:orientation="vertical" >
+    android:orientation="vertical">
     <TextView
         android:id="@+id/question_text_view"
         android:layout_width="wrap_content"
@@ -48,5 +49,11 @@
         android:drawableRight= "@drawable/arrow_right">
     </Button>
     </LinearLayout>
+    <TextView
+        android:id="@+id/API_level_text_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        tools:text="API level">
+    </TextView>
 
 </LinearLayout>

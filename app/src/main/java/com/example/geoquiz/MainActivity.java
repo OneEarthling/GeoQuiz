@@ -24,6 +24,7 @@ public class MainActivity extends AppCompatActivity {
     private Button mNextQuestion;
     private Button mCheatButton;
     private TextView mQuestionTextView;
+    private TextView mAPILevelTextView;
     private boolean mIsCheater;
 
     private Question[] mQuestionBank = new Question[]{
@@ -46,6 +47,10 @@ public class MainActivity extends AppCompatActivity {
             mCurrentIndex = savedInstanceState.getInt(KEY_INDEX, 0);
             mIsCheater = savedInstanceState.getBoolean(KEY_IS_CHEATER, false);
         }
+
+        mAPILevelTextView = findViewById(R.id.API_level_text_view);
+        String version = String.format("Уровень API: %d", android.os.Build.VERSION.SDK_INT);
+        mAPILevelTextView.setText(version);
 
         mQuestionTextView = findViewById(R.id.question_text_view);
         mQuestionTextView.setOnClickListener(new View.OnClickListener() {
